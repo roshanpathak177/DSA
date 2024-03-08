@@ -5,17 +5,18 @@ class BinarySearch {
         return binSearch(nums, s, e, target);
     }
     public int binSearch(int[] nums, int s, int e, int target){
-        int mid;
-        if(e >= s){
-            mid =(e+s)/2;
-            if(nums[mid] == target){
-                return mid;
-            }
-            else if(nums[mid] < target){
-                return binSearch(nums, mid+1, e, target);
-            } 
-            else{
-                return binSearch(nums, s, mid-1, target);
+         while (s <= e) {
+            int mid = s + (e - s) / 2;
+            if (nums[mid] < target) {
+                s = mid + 1;
+            } else if (nums[mid] > target) {
+                e = mid - 1;
+            } else {
+                if (mid == 0 || nums[mid - 1] != target) {
+                    return mid;
+                } else {
+                    e = mid - 1;
+                }
             }
         }
         return -1;
